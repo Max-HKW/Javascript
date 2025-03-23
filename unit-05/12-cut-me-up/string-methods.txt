@@ -1,0 +1,43 @@
+slice()
+
+Descrizione:
+Il metodo slice() estrae una porzione di una stringa e restituisce una nuova stringa senza modificare l'originale.
+Accetta due parametri: l'indice di inizio (start) e l'indice di fine (end), entrambi opzionali.
+
+Regole e comportamento:
+Se end è omesso, il metodo estrae fino alla fine della stringa.
+Se start è negativo, conta dalla fine della stringa (-1 è l'ultimo carattere).
+Se end è negativo, conta dalla fine della stringa, ma è esclusivo.
+Se start è maggiore della lunghezza della stringa, restituisce una stringa vuota.
+Se end è maggiore della lunghezza della stringa, estrae fino alla fine.
+Se start > end, restituisce una stringa vuota.
+
+
+substring()
+
+Descrizione:
+substring() è simile a slice(), ma con alcune differenze nel comportamento:
+
+Non accetta indici negativi, quindi se start o end sono negativi, vengono trattati come 0.
+Scambia automaticamente i valori di start e end se start > end.
+Se end è omesso, la sottostringa viene estratta fino alla fine.
+Regole e comportamento:
+Se start è negativo, viene trattato come 0.
+Se end è negativo, viene trattato come 0.
+Se start > end, i due valori vengono scambiati.
+Se end è maggiore della lunghezza della stringa, estrae fino alla fine.
+
+
+substr() (Deprecato)
+
+Descrizione:
+Il metodo substr() estrae una parte della stringa basandosi su un indice iniziale (start) e un numero di caratteri (length).
+
+Il primo parametro (start) può essere negativo, in tal caso conta dalla fine.
+Il secondo parametro (length) indica quanti caratteri prendere, non un indice finale.
+Se length è omesso, estrae fino alla fine della stringa.
+Regole e comportamento:
+Se start è negativo, conta dalla fine della stringa.
+Se start è maggiore della lunghezza della stringa, restituisce una stringa vuota.
+Se length è negativo o 0, restituisce una stringa vuota.
+Se length è maggiore della lunghezza disponibile, prende solo i caratteri restanti.
