@@ -77,14 +77,14 @@ function printValidationResult(card) {
   console.log('===================');
 }
 
-console.log(validateCreditCard('9999-9999-8888-0000'));
+console.log(printValidationResult('9999-9999-8888-0000'));
 
-console.log(validateCreditCard('1111-1111-1111-1111'));
+console.log(printValidationResult('1111-1111-1111-1111'));
 
-console.log(validateCreditCard('1234-5678-9012-345'));
+console.log(printValidationResult('1234-5678-9012-345'));
 
-console.log(validateCreditCard('1234-5678-9012-345a'));
+console.log(printValidationResult('1234-5678-9012-345a'));
 
-console.log(validateCreditCard('0000-0000-0000-0001'));
+console.log(printValidationResult('0000-0000-0000-0001'));
 
-console.log(validateCreditCard('1234-5678-9012-3457'));
+console.log(printValidationResult('1234-5678-9012-3457'));
