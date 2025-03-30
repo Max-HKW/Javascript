@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.clock-container {
+  font-size: 2rem;
+}
+
+#clock {
+    text-align: center;
+    font-family: monospace;
+}
