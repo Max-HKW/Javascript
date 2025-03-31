@@ -1,7 +1,7 @@
 # Function to Update Clock on Webpage
 
 ## Author:
-John Doe
+Massimo Musso
 
 ## Overview:
 This document explains a JavaScript function that updates the current time on a webpage every second. The function retrieves the current time, formats it to a "HH:mm:ss" format, and updates the content of an HTML element with the ID `clock`. The time is updated every second.

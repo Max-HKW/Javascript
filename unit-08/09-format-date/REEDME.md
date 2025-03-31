@@ -1,7 +1,7 @@
 # Function to Format Date Based on Time Elapsed
 
 ## Author:
-John Doe
+Massimo Musso
 
 ## Overview
 
