@@ -1,46 +1,32 @@
-# Delayed Logging with setTimeout
+# Custom SetInterval Implementation
 
 ## Overview
-This document explains how to simulate the behavior of `setInterval` using `setTimeout`. The code logs "Hello!" to the console every 2 seconds until a counter reaches 15, at which point the logging stops.
+This document describes a custom implementation of `setInterval` using `setTimeout`. Since `setInterval` executes a function repeatedly at specified intervals, we achieve the same functionality recursively with `setTimeout`.
 
-### 1. **File Description**
-The file contains a function that logs a message ("Hello!") to the console every 2 seconds. It uses `setTimeout` to simulate the behavior of `setInterval`, and stops the process automatically once the counter reaches 15. No manual cleanup is needed, as the process halts after the specified iterations.
+## How It Works
+1. **Initialization:**
+   - The function `mySetInterval` is called with a `callback` function and a `delay` in milliseconds.
+   - A counter (`count`) is set to `0`.
+   - A flag (`isRunning`) is set to `true` to control execution.
 
-### 2. **Function Explanations**
+2. **Recursive Execution:**
+   - A helper function (`intervalFunction`) is defined inside `mySetInterval`.
+   - This function checks if `count` is less than `15` and `isRunning` is `true`.
+   - If both conditions are met, it executes the `callback` and increments `count`.
+   - It then schedules itself to run again after the specified `delay` using `setTimeout`.
 
-#### a) **`mySetTimeout`**
-This function is the core of the process. It:
-- Logs "Hello!" to the console.
-- Increments a counter each time it is called.
-- Calls itself recursively with a 2-second delay using `setTimeout`.
-- Stops when the counter reaches 15 (it no longer calls itself after the 15th iteration).
+3. **Stopping the Execution:**
+   - The function stops automatically after `15` executions.
+   - A `stop` method is returned, allowing manual termination before reaching `15` executions.
 
-- **Parameters**: No parameters.
-- **Returns**: This function does not return any value; it simply performs an action (logs to the console).
+## Features
+- **Automatic Stop:** Ensures the interval does not run indefinitely.
+- **Manual Control:** Allows stopping the interval early via `stop()`.
+- **Recursive Execution:** Uses `setTimeout` to simulate `setInterval` behavior.
 
-#### b) **`counter`**
-The `counter` variable keeps track of how many times "Hello!" has been logged to the console. Once it reaches 15, the recursive calls to `setTimeout` stop.
+## Use Cases
+- Scheduling tasks with precise control over execution count.
+- Creating animations or timed events in JavaScript.
+- Running periodic updates while maintaining manual control.
 
-- **Purpose**: Track the number of iterations to limit the logging process.
-
-#### c) **How it Works**
-- **Step 1**: The function `mySetTimeout` is called initially, and it logs "Hello!".
-- **Step 2**: After 2 seconds, `setTimeout` is called again, and `mySetTimeout` is executed again.
-- **Step 3**: This continues until the counter reaches 15, at which point the condition `if (counter < 15)` fails, and no further recursive calls are made.
-- **Step 4**: Once the counter hits 15, the logging stops, and the process ends automatically.
-
-### 3. **Why `setTimeout` and Not `setInterval`?**
-- **`setTimeout`** is used here to simulate the behavior of `setInterval`. While `setInterval` calls a function repeatedly at specified intervals, `setTimeout` is typically used for a single delay. By calling `setTimeout` recursively, we can control the delay between each execution and stop the recursive calls after a certain condition is met (in this case, after 15 iterations).
-  
-### 4. **Benefits and Limitations**
-- **Benefits**:
-  - Simple and easy to understand.
-  - Simulates repeated execution without using `setInterval`.
-  - Automatically stops once the condition is met, no need for manual cleanup.
-- **Limitations**:
-  - The use of `setTimeout` for recursive calls can be less efficient if there's a long-running or highly frequent process.
-  - For more complex scenarios, managing multiple timeouts manually could become difficult.
-
-### 5. **Conclusion**
-This solution demonstrates how to simulate repeated execution at fixed intervals using `setTimeout`, without relying on `setInterval`. The logging process stops automatically after 15 iterations, making the code self-contained and easy to understand.
-
+This approach provides a flexible alternative to `setInterval` while allowing better control over execution flow.

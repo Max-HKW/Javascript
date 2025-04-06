@@ -1,37 +1,47 @@
 /**
  * @file main.js
  * @author Massimo Musso
- * @description This script simulates the behavior of setInterval using setTimeout.
- * It repeatedly logs "Hello!" every 2 seconds until a counter reaches 15.
- * After 15 iterations, the process stops automatically without the need for setInterval.
+ * @description Custom implementation of setInterval using setTimeout.
  */
 
 /**
- * Counter to track the number of iterations.
- * @type {number}
- */
-let counter = 0;
-
-/**
- * A function that simulates setInterval using setTimeout. It logs "Hello!" every 2 seconds
- * and stops after 15 iterations.
+ * Custom implementation of setInterval using setTimeout.
+ * Automatically stops after 15 executions.
  *
- * @function mySetTimeout
- * @returns {void} Logs "Hello!" every 2 seconds, increments the counter, and stops at 15 iterations.
+ * @param {Function} callback - Function to execute at each interval.
+ * @param {number} delay - Time in milliseconds between executions.
+ * @returns {Object} An object with a stop method to manually stop the interval.
  */
-function mySetTimeout() {
-  console.log('Hello!'); // Logs "Hello!" to the console
-  counter++; // Increments the counter
-
-  // Checks if the counter is less than 15 before scheduling the next iteration
-  if (counter < 15) {
-    setTimeout(mySetTimeout, 2000); // Calls the function again after 2 seconds
-  }
+function mySetInterval(callback, delay) {
+    let count = 0;
+    let isRunning = true;
+    
+    /**
+     * Recursive function to execute the callback and schedule the next execution.
+     */
+    function intervalFunction() {
+        if (count < 15 && isRunning) {
+            callback(); // Execute the provided function
+            count++; // Increment the execution count
+            setTimeout(intervalFunction, delay); // Schedule the next execution
+        }
+    }
+    
+    // Start the first execution after the specified delay
+    setTimeout(intervalFunction, delay);
+    
+    return {
+        /**
+         * Stops the interval from executing further.
+         */
+        stop: () => { isRunning = false; }
+    };
 }
 
-/**
- * Initiates the recursive timeout function to start the process.
- *
- * @returns {void} Starts the logging process with the mySetTimeout function.
- */
-mySetTimeout(); // Starts the sequence of operations
+// Test mySetInterval
+const interval = mySetInterval(() => {
+    console.log("Interval executed", new Date().toLocaleTimeString());
+}, 1000);
+
+// Optionally stop early
+// setTimeout(() => interval.stop(), 5000);
